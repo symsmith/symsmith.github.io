@@ -1,3 +1,3 @@
 # Personal website
 
-Live at [sym.codes](https://sym.codes)
+Live [here](https://symsmith.github.io/symeon-smith)
