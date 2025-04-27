@@ -1,0 +1,65 @@
+---
+import { getCollection } from "astro:content";
+import ArrowCardList from "~/components/ArrowCardList.astro";
+import Link from "~/components/Link.astro";
+import { HOME, SITE, SOCIALS } from "~/consts";
+import PageLayout from "~/layouts/PageLayout.astro";
+import RootLayout from "~/layouts/RootLayout.astro";
+
+const blog = (await getCollection("blog"))
+	.filter((post) => !post.data.draft)
+	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<RootLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
+	<PageLayout title="Hi, I'm Syméon 👋🏻">
+		<div class="space-y-16">
+			<section>
+				<article class="space-y-4">
+					<p class="animate">
+						I'm a front-end developer, passionate about building intuitive
+						interactive experiences.
+					</p>
+					<p class="animate">
+						I work at <Link href="https://www.karnott.fr/en/">Karnott</Link>,
+						where I help farmers manage their day-to-day operations and avoid
+						leaving money on the table.
+					</p>
+					<p class="animate">
+						Here, I write short articles that I wish I found sooner, about
+						problems I encounter in my daily work or interesting topics I
+						recently discovered.
+					</p>
+				</article>
+			</section>
+
+			<section class="animate space-y-6">
+				<div class="flex flex-wrap items-center justify-between gap-y-2">
+					<h5 class="font-semibold text-black dark:text-white">Latest posts</h5>
+					<Link href="/blog">See all posts</Link>
+				</div>
+				<ArrowCardList entries={blog} summary />
+			</section>
+
+			<section class="animate space-y-4">
+				<h5 class="font-semibold text-black dark:text-white">Find me on…</h5>
+				<ul class="flex flex-wrap gap-2">
+					{
+						SOCIALS.map((SOCIAL, i) => (
+							<li class="flex gap-x-2 text-nowrap">
+								<Link
+									href={SOCIAL.HREF}
+									external
+									aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}
+								>
+									{SOCIAL.NAME}
+								</Link>
+								{i < SOCIALS.length - 1 && "/"}
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</div>
+	</PageLayout>
+</RootLayout>

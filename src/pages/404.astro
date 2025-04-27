@@ -1,0 +1,19 @@
+---
+import BackToPrev from "~/components/BackToPrev.astro";
+import PageLayout from "~/layouts/PageLayout.astro";
+import RootLayout from "~/layouts/RootLayout.astro";
+---
+
+<RootLayout title="404 error" description="Page not found">
+	<PageLayout title={`404 — ${Astro.url.pathname}`}>
+		<article class="animate">
+			<p>
+				Looks like you managed to find a non-existent page. It exists in a state
+				of limbo, between the phases of reality itself…
+			</p>
+		</article>
+		<div class="animate">
+			<BackToPrev href="/">Back from whence you came</BackToPrev>
+		</div>
+	</PageLayout>
+</RootLayout>
