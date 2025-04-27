@@ -71,3 +71,11 @@ html #back-to-top {
 html.scrolled #back-to-top {
 	@apply pointer-events-auto opacity-100;
 }
+
+#overscroll {
+	@apply fixed z-50 flex w-full justify-center transition-all ease-linear;
+	top: 1000000000000px;
+	img {
+		@apply h-52 w-52 object-contain;
+	}
+}

@@ -131,7 +131,32 @@ const { title, description, image = "/nano.png" } = Astro.props;
 		});
 	}
 
+	function isMobileSafari() {
+		return (
+			/iP(ad|od|hone)/i.test(window.navigator.userAgent) &&
+			!!navigator.userAgent.match(/Version\/[\d.]+.*Safari/)
+		);
+	}
+
+	const overScrollEnabled = isMobileSafari();
+
 	function onScroll() {
+		if (overScrollEnabled) {
+			const overScrollDelta = 100;
+
+			const fromBottom =
+				window.scrollY +
+				document.body.clientHeight -
+				document.body.scrollHeight -
+				overScrollDelta;
+			const fromTop = document.body.clientHeight - fromBottom;
+
+			const overscrollElt = document.getElementById("overscroll");
+			if (overscrollElt) {
+				overscrollElt.style.top = `${fromTop}px`;
+			}
+		}
+
 		if (window.scrollY > 15) {
 			document.documentElement.classList.add("scrolled");
 		} else {
