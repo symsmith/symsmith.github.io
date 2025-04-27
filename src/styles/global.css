@@ -20,6 +20,33 @@ html.dark .astro-code span {
 	text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
+html.dark .astro-code .line.highlighted {
+	background-color: #2e2e2e !important;
+}
+
+html:not(.dark) .astro-code .line.highlighted {
+	background-color: #efefef !important;
+}
+
+.astro-code .line {
+	--code-padding: 16px;
+
+	display: block;
+
+	&:empty::after {
+		content: " ";
+	}
+
+	&.highlighted {
+		width: calc(100% + 2 * var(--code-padding));
+		margin: 0 calc(-1 * var(--code-padding));
+		padding: 0 var(--code-padding);
+		span {
+			background-color: transparent !important;
+		}
+	}
+}
+
 html,
 body {
 	@apply size-full;

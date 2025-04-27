@@ -2,6 +2,10 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import { transformerColorizedBrackets } from "@shikijs/colorized-brackets";
+import {
+	transformerMetaHighlight,
+	transformerRemoveLineBreak,
+} from "@shikijs/transformers";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
@@ -11,7 +15,11 @@ export default defineConfig({
 	site: SITE_URL,
 	markdown: {
 		shikiConfig: {
-			transformers: [transformerColorizedBrackets()],
+			transformers: [
+				transformerMetaHighlight(),
+				transformerRemoveLineBreak(),
+				transformerColorizedBrackets(),
+			],
 			themes: { light: "one-light", dark: "slack-dark" },
 		},
 	},
