@@ -62,7 +62,7 @@ body {
 header {
 	@apply fixed left-0 right-0 top-0 z-50 py-5;
 	@apply bg-stone-100/75 dark:bg-stone-900/25;
-	@apply saturate-200 backdrop-blur-sm;
+	@apply backdrop-blur-sm;
 }
 
 main {
