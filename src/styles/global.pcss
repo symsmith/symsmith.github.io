@@ -11,13 +11,20 @@ html.dark {
 	color-scheme: dark;
 }
 
-html.dark .astro-code,
-html.dark .astro-code span {
-	color: var(--shiki-dark) !important;
+html.dark .astro-code {
 	background-color: var(--shiki-dark-bg) !important;
-	font-style: var(--shiki-dark-font-style) !important;
-	font-weight: var(--shiki-dark-font-weight) !important;
-	text-decoration: var(--shiki-dark-text-decoration) !important;
+
+	.line,
+	span {
+		color: var(--shiki-dark) !important;
+		font-style: var(--shiki-dark-font-style) !important;
+		font-weight: var(--shiki-dark-font-weight) !important;
+		text-decoration: var(--shiki-dark-text-decoration) !important;
+	}
+
+	.copy-button {
+		background-color: var(--shiki-dark-bg);
+	}
 }
 
 html.dark .astro-code .line.highlighted {
@@ -28,22 +35,41 @@ html:not(.dark) .astro-code .line.highlighted {
 	background-color: #efefef !important;
 }
 
-.astro-code .line {
-	--code-padding: 16px;
+.astro-code {
+	position: relative;
 
-	display: block;
+	.line {
+		--code-padding: 16px;
 
-	&:empty::after {
-		content: " ";
+		display: block;
+
+		&:empty::after {
+			content: " ";
+		}
+
+		&.highlighted {
+			width: calc(100% + 2 * var(--code-padding));
+			margin: 0 calc(-1 * var(--code-padding));
+			padding: 0 var(--code-padding);
+			span {
+				background-color: transparent !important;
+			}
+		}
 	}
 
-	&.highlighted {
-		width: calc(100% + 2 * var(--code-padding));
-		margin: 0 calc(-1 * var(--code-padding));
-		padding: 0 var(--code-padding);
-		span {
-			background-color: transparent !important;
+	.copy-button {
+		@apply absolute right-0 top-0 text-black/50 transition-all ease-in-out dark:text-white/75;
+		padding: 0.8571429em 1.1428571em;
+		background-color: rgb(250 250 250);
+
+		&:not([disabled]):hover,
+		&[disabled] {
+			@apply text-black dark:text-white;
 		}
+	}
+
+	&:has(.line:first-of-type:hover) .copy-button {
+		@apply opacity-0;
 	}
 }
 

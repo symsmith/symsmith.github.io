@@ -23,10 +23,14 @@ export const SOCIALS: Socials = [
 	},
 	{
 		NAME: "bluesky",
-		HREF: "https://bsky.app/profile/symsmith.bsky.social",
+		HREF: "https://bsky.app/profile/symeon.dev",
 	},
 	{
 		NAME: "linkedin",
 		HREF: "https://www.linkedin.com/in/symeon-smith/",
+	},
+	{
+		NAME: "me@symeon.dev",
+		HREF: "mailto:me@symeon.dev",
 	},
 ];

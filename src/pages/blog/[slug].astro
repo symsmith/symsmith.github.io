@@ -21,6 +21,53 @@ const post = Astro.props;
 const { Content } = await post.render();
 ---
 
+<script>
+	function getCodeFromCodeBlock(codeBlockElement: Element) {
+		const lines = codeBlockElement.querySelectorAll(".line");
+		const code = [...lines].map((line) => line.textContent).join("\n");
+		return code;
+	}
+
+	function getButtonInnerHTML(text: string) {
+		return text;
+	}
+
+	function addCopyButtonToCodeBlock(codeBlockElement: Element) {
+		const button = document.createElement("button");
+
+		button.classList.add("copy-button");
+		button.innerHTML = getButtonInnerHTML("Copy");
+
+		button.addEventListener("click", async () => {
+			button.disabled = true;
+			const code = getCodeFromCodeBlock(codeBlockElement);
+			try {
+				await navigator.clipboard.writeText(code);
+				button.innerHTML = getButtonInnerHTML("Copied!");
+				setTimeout(() => {
+					button.innerHTML = getButtonInnerHTML("Copy");
+					button.disabled = false;
+				}, 2000);
+			} catch {
+				button.innerHTML = getButtonInnerHTML("Error");
+				setTimeout(() => {
+					button.innerHTML = getButtonInnerHTML("Copy");
+					button.disabled = false;
+				}, 2000);
+			}
+		});
+
+		codeBlockElement.appendChild(button);
+	}
+
+	function addCopyToCodeBlocks() {
+		const codeBlocks = document.querySelectorAll(".astro-code code");
+		codeBlocks.forEach(addCopyButtonToCodeBlock);
+	}
+
+	addCopyToCodeBlocks();
+</script>
+
 <RootLayout title={post.data.title} description={post.data.description}>
 	<Container>
 		<div class="animate">

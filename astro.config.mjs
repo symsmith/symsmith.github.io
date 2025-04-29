@@ -15,6 +15,7 @@ export default defineConfig({
 	site: SITE_URL,
 	markdown: {
 		shikiConfig: {
+			wrap: true,
 			transformers: [
 				transformerMetaHighlight(),
 				transformerRemoveLineBreak(),
