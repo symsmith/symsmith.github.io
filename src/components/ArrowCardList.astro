@@ -6,9 +6,10 @@ import ArrowCard from "./ArrowCard.astro";
 type Props = {
 	entries: CollectionEntry<"blog">[];
 	summary?: boolean;
+	collection?: string;
 };
 
-const { entries, summary = false } = Astro.props;
+const { entries, summary = false, collection } = Astro.props;
 
 const shortEntries = summary
 	? entries.slice(0, SITE.NUM_POSTS_ON_HOMEPAGE)
@@ -19,7 +20,7 @@ const shortEntries = summary
 	{
 		shortEntries.map((entry) => (
 			<li>
-				<ArrowCard entry={entry} />
+				<ArrowCard entry={entry} collection={collection} />
 			</li>
 		))
 	}

@@ -24,6 +24,15 @@ export default defineConfig({
 			themes: { light: "one-light", dark: "slack-dark" },
 		},
 	},
-	integrations: [mdx(), sitemap(), tailwind()],
+	integrations: [
+		mdx(),
+		sitemap({
+			filter: (page) => {
+				const url = new URL(page);
+				return !url.pathname.includes("drafts");
+			},
+		}),
+		tailwind(),
+	],
 	trailingSlash: "always",
 });

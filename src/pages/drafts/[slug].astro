@@ -9,7 +9,7 @@ import { getDescription, readingTime } from "~/lib/utils";
 
 export async function getStaticPaths() {
 	const posts = (await getCollection("blog"))
-		.filter((post) => !post.data.draft)
+		.filter((post) => post.data.draft)
 		.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 	return posts.map((post) => ({
 		params: { slug: post.slug },
@@ -27,7 +27,7 @@ const { Content } = await post.render();
 <RootLayout title={post.data.title} description={getDescription(post.body)}>
 	<Container>
 		<div class="animate">
-			<BackToPrev href="/blog/"> Back to blog </BackToPrev>
+			<BackToPrev href="/drafts/">Back to drafts</BackToPrev>
 		</div>
 		<div class="my-10 space-y-1">
 			<div class="animate flex items-center gap-1.5">
