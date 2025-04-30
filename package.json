@@ -5,7 +5,8 @@
 	"scripts": {
 		"dev": "astro dev",
 		"dev:network": "astro dev --host",
-		"build": "astro check && astro build",
+		"check": "astro check",
+		"build": "pnpm check && astro build",
 		"preview": "astro preview",
 		"preview:network": "astro preview --host",
 		"astro": "astro",

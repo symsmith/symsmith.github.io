@@ -1,6 +1,7 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import { HOME } from "~/consts";
+import { getDescription } from "~/lib/utils";
 
 type Context = {
 	site: string;
@@ -19,7 +20,7 @@ export async function GET(context: Context) {
 		site: context.site,
 		items: items.map((item) => ({
 			title: item.data.title,
-			description: item.data.description,
+			description: getDescription(item.body),
 			pubDate: item.data.date,
 			link: `/${item.collection}/${item.slug}/`,
 		})),

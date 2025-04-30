@@ -38,3 +38,7 @@ export function dateRange(startDate: Date, endDate?: Date | string): string {
 
 	return `${startMonth}${startYear} - ${endMonth}${endYear}`;
 }
+
+export function getDescription(post: string) {
+	return `${post.split("\n\n")[0]!.slice(0, 200)}…`;
+}

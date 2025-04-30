@@ -4,7 +4,7 @@ import BackToPrev from "~/components/BackToPrev.astro";
 import Container from "~/components/Container.astro";
 import FormattedDate from "~/components/FormattedDate.astro";
 import RootLayout from "~/layouts/RootLayout.astro";
-import { readingTime } from "~/lib/utils";
+import { getDescription, readingTime } from "~/lib/utils";
 
 export async function getStaticPaths() {
 	const posts = (await getCollection("blog"))
@@ -68,7 +68,7 @@ const { Content } = await post.render();
 	addCopyToCodeBlocks();
 </script>
 
-<RootLayout title={post.data.title} description={post.data.description}>
+<RootLayout title={post.data.title} description={getDescription(post.body)}>
 	<Container>
 		<div class="animate">
 			<BackToPrev href="/blog/"> Back to blog </BackToPrev>
