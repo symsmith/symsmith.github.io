@@ -5,13 +5,15 @@
 	"scripts": {
 		"dev": "astro dev",
 		"dev:network": "astro dev --host",
-		"check": "astro check",
+		"fmt": "prettier . --check",
+		"fmt:fix": "prettier . --check --write",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"check": "astro check && pnpm fmt && pnpm lint",
 		"build": "pnpm check && astro build",
 		"preview": "astro preview",
 		"preview:network": "astro preview --host",
-		"astro": "astro",
-		"lint": "eslint .",
-		"lint:fix": "eslint . --fix"
+		"astro": "astro"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.4",

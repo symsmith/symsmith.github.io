@@ -9,10 +9,17 @@ import {
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
-const { SITE_URL } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
+const { SITE_URL = "http://localhost:4321" } = loadEnv(
+	process.env.NODE_ENV,
+	process.cwd(),
+	"",
+);
 
 export default defineConfig({
 	site: SITE_URL,
+	devToolbar: {
+		enabled: false,
+	},
 	markdown: {
 		shikiConfig: {
 			wrap: true,
