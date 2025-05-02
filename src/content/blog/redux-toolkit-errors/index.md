@@ -30,9 +30,12 @@ But the same code, using Redux Toolkit's [`createAsyncThunk`](https://redux-tool
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { store } from "./store.js";
 
-const failingAction = createAsyncThunk("actions/example", async () => {
-	throw new Error("action failed");
-});
+const failingAction = createAsyncThunk(
+	"actions/example",
+	async () => {
+		throw new Error("action failed");
+	},
+);
 
 try {
 	await store.dispatch(failingAction());
