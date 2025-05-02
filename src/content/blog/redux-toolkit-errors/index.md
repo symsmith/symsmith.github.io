@@ -4,7 +4,7 @@ date: 2025/04/30
 draft: true
 ---
 
-I recently started migrating my company's codebase to [Redux Toolkit](https://redux-toolkit.js.org/), after many years using bare [Redux](https://redux.js.org/) with manually (painfully) written action creators and reducers. After some time, I realized that our error handling code was malfunctioning for dispatched thunks.
+I recently started migrating my company's codebase to [Redux Toolkit](https://redux-toolkit.js.org/), after many years using bare [Redux](https://redux.js.org/) with manually (painfully) written action creators and reducers. After some time, I realized that our error handling code was malfunctioning for async thunks.
 
 It turns out that by default, Redux Toolkit handles error propagation of failed async thunks differently than Redux (which doesn't really handle them at all).
 
@@ -62,13 +62,13 @@ Instead, Redux Toolkit dispatches a **rejected action** that looks like this:
 }
 ```
 
-This is great because it allows for **typed errors**, but in the context of a migration from an existing Redux codebase, it makes things harder to convert as you go. It means you have to go over every action dispatch when you convert them to Redux Toolkit to repair any broken error handling.
+This is great because it means that errors are deeply integrated in Redux's system, but in the context of a migration from an existing Redux codebase, it makes things harder to convert as you go. You have to go over every action dispatch when you convert them to Redux Toolkit to repair any broken error handling.
 
 Redux Toolkit also provides an [`.unwrap()`](https://redux-toolkit.js.org/api/createAsyncThunk#unwrapping-result-actions) method on dispatched actions to get this behavior back, but it also means adding it to every action call if you're not migrating all your code at once.
 
 ## Creating a custom middleware
 
-In order to unwrap all actions by default, [this Github issue comment](https://github.com/reduxjs/redux-toolkit/issues/910#issuecomment-801211740) suggested to create a custom Redux middleware to intercept rejected actions like the example above, and instead throw the error associated with it. Their solution looks like this:
+In order to unwrap all actions by default, [this Github issue comment](https://github.com/reduxjs/redux-toolkit/issues/910#issuecomment-801211740) suggested to create a custom Redux middleware intercepting rejected actions like the example above, and instead throw the error associated with it. Their solution looks like this:
 
 ```ts
 const throwMiddleware = () => (next) => (action) => {
@@ -90,7 +90,7 @@ const throwMiddleware = () => (next) => (action) => {
 };
 ```
 
-Use it like any other middleware:
+Use it like any other Redux middleware:
 
 ```ts
 const store = configureStore({
@@ -101,3 +101,5 @@ const store = configureStore({
 		getDefaultMiddleware().concat(throwMiddleware),
 });
 ```
+
+And just like that, no need to worry about broken error handling!
