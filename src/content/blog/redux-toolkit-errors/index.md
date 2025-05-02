@@ -26,7 +26,7 @@ try {
 
 But the same code, using Redux Toolkit's [`createAsyncThunk`](https://redux-toolkit.js.org/api/createAsyncThunk), does not throw an error at all:
 
-```js
+```js {13}
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { store } from "./store.js";
 
@@ -71,7 +71,7 @@ Redux Toolkit also provides an [`.unwrap()`](https://redux-toolkit.js.org/api/cr
 
 ## Creating a custom middleware
 
-In order to unwrap all actions by default, [this Github issue comment](https://github.com/reduxjs/redux-toolkit/issues/910#issuecomment-801211740) suggested to create a custom Redux middleware intercepting rejected actions like the example above, and instead throw the error associated with it. Their solution looks like this:
+In order to unwrap all actions by default, [this Github issue comment](https://github.com/reduxjs/redux-toolkit/issues/910#issuecomment-801211740) suggested creating a custom Redux middleware to intercept rejected actions like in the example above, and to instead throw the error associated with it.
 
 ```ts
 const throwMiddleware = () => (next) => (action) => {
@@ -82,7 +82,7 @@ const throwMiddleware = () => (next) => (action) => {
 };
 ```
 
-However, I found that this is not ideal since we lose any returned value from the action, which may be useful to some parts of the code. Instead, I opted for this middleware:
+After trying it out however, I found that this is not ideal since we lose any returned value from the action, which may be useful to some parts of the code. Instead, I opted for this middleware:
 
 ```ts
 const throwMiddleware = () => (next) => (action) => {
@@ -95,7 +95,7 @@ const throwMiddleware = () => (next) => (action) => {
 
 Use it like any other Redux middleware:
 
-```ts
+```ts {6}
 const store = configureStore({
 	reducer: {
 		// ...
