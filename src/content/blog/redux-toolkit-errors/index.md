@@ -1,7 +1,6 @@
 ---
 title: Propagating Errors with Redux Toolkit
-date: 2025/04/30
-draft: true
+date: 2025/05/02
 ---
 
 I recently started migrating my company's codebase to [Redux Toolkit](https://redux-toolkit.js.org/), after many years using bare [Redux](https://redux.js.org/) with manually (painfully) written action creators and reducers. After some time, I realized that our error handling code was malfunctioning for async thunks.
