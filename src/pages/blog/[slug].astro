@@ -24,7 +24,7 @@ const { Content } = await post.render();
 
 <CopyCodeBlocks />
 
-<RootLayout title={post.data.title} description={getDescription(post.body)}>
+<RootLayout title={post.data.title} description={await getDescription(post)}>
 	<Container>
 		<div class="animate">
 			<BackToPrev href="/blog/"> Back to blog </BackToPrev>

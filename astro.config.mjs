@@ -8,6 +8,7 @@ import {
 } from "@shikijs/transformers";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
+import remarkDescription from "./plugins/description";
 
 const { SITE_URL = "http://localhost:4321" } = loadEnv(
 	process.env.NODE_ENV,
@@ -30,6 +31,7 @@ export default defineConfig({
 			],
 			themes: { light: "one-light", dark: "slack-dark" },
 		},
+		remarkPlugins: [remarkDescription],
 	},
 	integrations: [
 		mdx(),
