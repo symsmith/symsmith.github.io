@@ -9,7 +9,6 @@ const blog = defineCollection({
 			date.setHours(12 - tzo / 60, 0, 0, 0);
 			return date;
 		}),
-		draft: z.boolean().optional(),
 	}),
 });
 

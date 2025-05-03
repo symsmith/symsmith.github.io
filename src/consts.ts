@@ -16,12 +16,6 @@ export const BLOG: Metadata = {
 		"Short articles about web development topics that I come across in my daily work",
 };
 
-export const DRAFTS: Metadata = {
-	TITLE: "Drafts",
-	DESCRIPTION:
-		"Drafts of short articles about web development topics that I come across in my daily work",
-};
-
 export const SOCIALS: Socials = [
 	{
 		NAME: "github",

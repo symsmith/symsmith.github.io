@@ -5,9 +5,9 @@ import { BLOG } from "~/consts";
 import PageLayout from "~/layouts/PageLayout.astro";
 import RootLayout from "~/layouts/RootLayout.astro";
 
-const data = (await getCollection("blog"))
-	.filter((post) => !post.data.draft)
-	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const data = (await getCollection("blog")).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 
 type Acc = {
 	[year: string]: CollectionEntry<"blog">[];

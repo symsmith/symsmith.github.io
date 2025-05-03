@@ -8,9 +8,9 @@ import RootLayout from "~/layouts/RootLayout.astro";
 import { getDescription, readingTime } from "~/lib/utils";
 
 export async function getStaticPaths() {
-	const posts = (await getCollection("blog"))
-		.filter((post) => !post.data.draft)
-		.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+	const posts = (await getCollection("blog")).sort(
+		(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+	);
 	return posts.map((post) => ({
 		params: { slug: post.slug },
 		props: post,

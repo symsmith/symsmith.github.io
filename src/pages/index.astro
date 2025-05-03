@@ -7,9 +7,9 @@ import { HOME, SITE, SOCIALS } from "~/consts";
 import PageLayout from "~/layouts/PageLayout.astro";
 import RootLayout from "~/layouts/RootLayout.astro";
 
-const blog = (await getCollection("blog"))
-	.filter((post) => !post.data.draft)
-	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const blog = (await getCollection("blog")).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 ---
 
 <RootLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>

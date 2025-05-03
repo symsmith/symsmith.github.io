@@ -8,7 +8,7 @@ type Context = {
 };
 
 export async function GET(context: Context) {
-	const blog = (await getCollection("blog")).filter((post) => !post.data.draft);
+	const blog = await getCollection("blog");
 
 	const items = blog.toSorted(
 		(a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf(),
