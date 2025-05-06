@@ -68,7 +68,7 @@ This is great because it means that errors are deeply integrated in Redux's syst
 
 Redux Toolkit also provides an [`.unwrap()`](https://redux-toolkit.js.org/api/createAsyncThunk#unwrapping-result-actions) method on dispatched actions to get this behavior back, but it also means adding it to every action call if you're not migrating all your code at once.
 
-## Creating a custom middleware
+### Creating a custom middleware
 
 In order to unwrap all actions by default, [this Github issue comment](https://github.com/reduxjs/redux-toolkit/issues/910#issuecomment-801211740) suggested creating a custom Redux middleware to intercept rejected actions like in the example above, and to instead throw the error associated with it.
 

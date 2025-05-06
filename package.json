@@ -38,11 +38,11 @@
 		"unist-util-visit": "^5.0.0"
 	},
 	"devDependencies": {
-		"@shikijs/colorized-brackets": "^3.3.0",
-		"@shikijs/transformers": "^3.3.0",
+		"@shikijs/colorized-brackets": "^3.4.0",
+		"@shikijs/transformers": "^3.4.0",
 		"prettier": "3.5.3",
 		"prettier-plugin-astro": "0.14.1",
 		"prettier-plugin-tailwindcss": "^0.6.11",
-		"vite": "^6.3.4"
+		"vite": "^6.3.5"
 	}
 }
