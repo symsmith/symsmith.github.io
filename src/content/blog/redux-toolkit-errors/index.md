@@ -13,13 +13,13 @@ Calling a manually created action in Redux that throws an error means you can ca
 import { store } from "./store.js";
 
 const failingAction = () => async (dispatch) => {
-	throw new Error("action failed");
+  throw new Error("action failed");
 };
 
 try {
-	await store.dispatch(failingAction());
+  await store.dispatch(failingAction());
 } catch (e) {
-	console.log(e.message); // "action failed"
+  console.log(e.message); // "action failed"
 }
 ```
 
@@ -30,17 +30,17 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { store } from "./store.js";
 
 const failingAction = createAsyncThunk(
-	"actions/example",
-	async () => {
-		throw new Error("action failed");
-	},
+  "actions/example",
+  async () => {
+    throw new Error("action failed");
+  },
 );
 
 try {
-	await store.dispatch(failingAction());
-	console.log("no error?"); // no error!
+  await store.dispatch(failingAction());
+  console.log("no error?"); // no error!
 } catch (e) {
-	console.log(e.message); // doesn't run
+  console.log(e.message); // doesn't run
 }
 ```
 
@@ -48,19 +48,19 @@ Instead, Redux Toolkit dispatches a **rejected action** that looks like this:
 
 ```json
 {
-	"type": "actions/example/rejected",
-	"meta": {
-		"requestId": "w1qWHSJ2kjJNoYqCh0poG",
-		"rejectedWithValue": false,
-		"requestStatus": "rejected",
-		"aborted": false,
-		"condition": false
-	},
-	"error": {
-		"name": "Error",
-		"message": "action failed",
-		"stack": "Error: action failed at..."
-	}
+  "type": "actions/example/rejected",
+  "meta": {
+    "requestId": "w1qWHSJ2kjJNoYqCh0poG",
+    "rejectedWithValue": false,
+    "requestStatus": "rejected",
+    "aborted": false,
+    "condition": false
+  },
+  "error": {
+    "name": "Error",
+    "message": "action failed",
+    "stack": "Error: action failed at..."
+  }
 }
 ```
 
@@ -74,10 +74,10 @@ In order to unwrap all actions by default, [this Github issue comment](https://g
 
 ```ts
 const throwMiddleware = () => (next) => (action) => {
-	next(action);
-	if (action?.error) {
-		throw action.error;
-	}
+  next(action);
+  if (action?.error) {
+    throw action.error;
+  }
 };
 ```
 
@@ -85,10 +85,10 @@ After trying it out however, I found that this is not ideal since we lose any re
 
 ```ts
 const throwMiddleware = () => (next) => (action) => {
-	if (action?.error) {
-		throw action.error; // throw if the action failed
-	}
-	return next(action); // return the final payload
+  if (action?.error) {
+    throw action.error; // throw if the action failed
+  }
+  return next(action); // return the final payload
 };
 ```
 
@@ -96,11 +96,11 @@ Use it like any other Redux middleware:
 
 ```ts {6}
 const store = configureStore({
-	reducer: {
-		// ...
-	},
-	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware().concat(throwMiddleware),
+  reducer: {
+    // ...
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(throwMiddleware),
 });
 ```
 
