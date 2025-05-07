@@ -1,24 +1,18 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { SITE } from "~/consts";
 import ArrowCard from "./ArrowCard.astro";
 
 type Props = {
 	entries: CollectionEntry<"blog">[];
-	summary?: boolean;
 	collection?: string;
 };
 
-const { entries, summary = false, collection } = Astro.props;
-
-const shortEntries = summary
-	? entries.slice(0, SITE.NUM_POSTS_ON_HOMEPAGE)
-	: entries;
+const { entries, collection } = Astro.props;
 ---
 
 <ul class="flex flex-col gap-4">
 	{
-		shortEntries.map((entry) => (
+		entries.map((entry) => (
 			<li class="animate">
 				<ArrowCard entry={entry} collection={collection} />
 			</li>
