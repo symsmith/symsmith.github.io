@@ -40,9 +40,11 @@
 	"devDependencies": {
 		"@shikijs/colorized-brackets": "^3.4.0",
 		"@shikijs/transformers": "^3.4.0",
+		"@types/mdast": "^4.0.4",
 		"prettier": "3.5.3",
 		"prettier-plugin-astro": "0.14.1",
 		"prettier-plugin-tailwindcss": "^0.6.11",
+		"unified": "^11.0.5",
 		"vite": "^6.3.5"
 	}
 }

@@ -121,13 +121,20 @@ const { title, description, image = "/nano.png" } = Astro.props;
 		document.addEventListener("scroll", onScroll);
 	}
 
+	function isScrolled() {
+		return window.scrollY > 15;
+	}
+
 	function animate() {
 		const animateElements = document.querySelectorAll(".animate");
 
 		animateElements.forEach((element, index) => {
-			setTimeout(() => {
-				element.classList.add("show");
-			}, index * 150);
+			setTimeout(
+				() => {
+					element.classList.add("show");
+				},
+				isScrolled() ? 0 : index * 100,
+			);
 		});
 	}
 
@@ -157,7 +164,7 @@ const { title, description, image = "/nano.png" } = Astro.props;
 			}
 		}
 
-		if (window.scrollY > 15) {
+		if (isScrolled()) {
 			document.documentElement.classList.add("scrolled");
 		} else {
 			document.documentElement.classList.remove("scrolled");
