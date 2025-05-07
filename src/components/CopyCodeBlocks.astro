@@ -34,11 +34,16 @@
 			}
 		});
 
-		codeBlockElement.appendChild(button);
+		const newContainer = document.createElement("div");
+		codeBlockElement.insertAdjacentElement("beforebegin", newContainer);
+		newContainer.appendChild(codeBlockElement);
+		newContainer.classList.add("code-container");
+
+		codeBlockElement.insertAdjacentElement("afterend", button);
 	}
 
 	function addCopyToCodeBlocks() {
-		const codeBlocks = document.querySelectorAll(".astro-code code");
+		const codeBlocks = document.querySelectorAll(".astro-code");
 		codeBlocks.forEach(addCopyButtonToCodeBlock);
 	}
 

@@ -15,70 +15,78 @@ html.dark {
 	color-scheme: dark;
 }
 
-html.dark .astro-code {
-	background-color: var(--shiki-dark-bg) !important;
+html.dark .code-container {
+	.astro-code {
+		background-color: var(--shiki-dark-bg) !important;
 
-	.line,
-	span {
+		.line,
+		span {
+			color: var(--shiki-dark) !important;
+			font-style: var(--shiki-dark-font-style) !important;
+			font-weight: var(--shiki-dark-font-weight) !important;
+			text-decoration: var(--shiki-dark-text-decoration) !important;
+		}
+	}
+
+	.copy-button {
+		background-color: var(--shiki-dark-bg);
 		color: var(--shiki-dark) !important;
 		font-style: var(--shiki-dark-font-style) !important;
 		font-weight: var(--shiki-dark-font-weight) !important;
 		text-decoration: var(--shiki-dark-text-decoration) !important;
 	}
-
-	.copy-button {
-		background-color: var(--shiki-dark-bg);
-	}
 }
 
 html.dark .astro-code .line.highlighted {
-	background-color: #2e2e2e !important;
+	box-shadow:
+		inset 0px 0px 0px 16px #2e2e2e,
+		calc(-1 * var(--code-padding-horizontal)) 0px 0px 0px #2e2e2e,
+		var(--code-padding-horizontal) 0px 0px 0px #2e2e2e;
 }
 
 html:not(.dark) .astro-code .line.highlighted {
-	background-color: #efefef !important;
+	box-shadow:
+		inset 0px 0px 0px 16px #efefef,
+		calc(-1 * var(--code-padding-horizontal)) 0px 0px 0px #efefef,
+		var(--code-padding-horizontal) 0px 0px 0px #efefef;
 }
 
-.astro-code {
-	--code-padding-horizontal: 16px;
+.code-container {
+	@apply relative;
+	--code-padding-horizontal: 12px;
 	--code-padding-vertical: 8px;
-	position: relative;
-	counter-reset: step;
-	counter-increment: step 0;
-	padding-left: calc(var(--code-padding-horizontal) * 3);
-	padding-block: var(--code-padding-vertical);
 
-	.line {
-		@apply relative block;
+	.astro-code {
+		position: relative;
+		padding-inline: var(--code-padding-horizontal);
+		padding-block: var(--code-padding-vertical);
 
-		width: calc(100% + 4 * var(--code-padding-horizontal));
-		margin: 0 calc(-3 * var(--code-padding-horizontal));
-		padding: 0 var(--code-padding-horizontal) 0
-			calc(2 * var(--code-padding-horizontal));
-
-		&::before {
-			@apply absolute top-0 h-4 w-7 text-right text-black/30 dark:text-white/30;
-			left: -2px;
-			content: counter(step);
-			counter-increment: step;
+		code {
+			@apply inline-block min-w-full;
 		}
 
-		/* show empty lines */
-		& span:empty::after,
-		&:empty::after {
-			content: " ";
-		}
+		.line {
+			@apply relative block;
 
-		&.highlighted span {
-			background-color: transparent !important;
+			/* show empty lines */
+			& span:empty::after,
+			&:empty::after {
+				content: " ";
+			}
+
+			&.highlighted span {
+				background-color: transparent !important;
+			}
 		}
 	}
 
 	.copy-button {
 		@apply absolute right-0 top-0 rounded-es-md text-black/50 opacity-75 transition-all ease-in-out dark:text-white/75;
-		padding: var(--code-padding-vertical) 1.1428571em;
+		padding: var(--code-padding-vertical) var(--code-padding-horizontal);
 		background-color: rgb(250 250 250);
 		user-select: none;
+		font-size: 14px;
+		font-family: monospace;
 
 		&:not([disabled]):hover,
 		&[disabled] {

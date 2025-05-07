@@ -23,7 +23,6 @@ export default defineConfig({
 	},
 	markdown: {
 		shikiConfig: {
-			wrap: true,
 			transformers: [
 				transformerMetaHighlight(),
 				transformerRemoveLineBreak(),
