@@ -10,10 +10,9 @@
 	}
 
 	function addCopyButtonToCodeBlock(codeBlockElement: Element) {
-		const button = document.createElement("button");
-
-		button.classList.add("copy-button");
-		button.innerHTML = getButtonInnerHTML("Copy");
+		const button =
+			codeBlockElement.querySelector<HTMLButtonElement>(".copy-button");
+		if (!button) return;
 
 		button.addEventListener("click", async () => {
 			button.disabled = true;
@@ -33,12 +32,10 @@
 				}, 2000);
 			}
 		});
-
-		codeBlockElement.appendChild(button);
 	}
 
 	function addCopyToCodeBlocks() {
-		const codeBlocks = document.querySelectorAll(".astro-code code");
+		const codeBlocks = document.querySelectorAll(".code-container");
 		codeBlocks.forEach(addCopyButtonToCodeBlock);
 	}
 

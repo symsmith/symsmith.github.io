@@ -8,6 +8,7 @@ import {
 } from "@shikijs/transformers";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
+import rehypeCopyCode from "./plugins/copyCode";
 import remarkDescription from "./plugins/description";
 
 const { SITE_URL = "http://localhost:4321" } = loadEnv(
@@ -23,7 +24,6 @@ export default defineConfig({
 	},
 	markdown: {
 		shikiConfig: {
-			wrap: true,
 			transformers: [
 				transformerMetaHighlight(),
 				transformerRemoveLineBreak(),
@@ -32,6 +32,7 @@ export default defineConfig({
 			themes: { light: "one-light", dark: "slack-dark" },
 		},
 		remarkPlugins: [remarkDescription],
+		rehypePlugins: [rehypeCopyCode],
 	},
 	integrations: [
 		mdx(),
