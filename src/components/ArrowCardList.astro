@@ -13,7 +13,7 @@ const { entries, collection } = Astro.props;
 <ul class="flex flex-col gap-4">
 	{
 		entries.map((entry) => (
-			<li class="animate">
+			<li>
 				<ArrowCard entry={entry} collection={collection} />
 			</li>
 		))

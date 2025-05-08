@@ -31,9 +31,7 @@ const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a));
 			{
 				years.map((year) => (
 					<section class="animate space-y-4">
-						<div class="animate font-semibold text-black dark:text-white">
-							{year}
-						</div>
+						<div class="font-semibold text-black dark:text-white">{year}</div>
 						<div>
 							<ArrowCardList entries={posts[year]!} />
 						</div>

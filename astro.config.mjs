@@ -8,7 +8,6 @@ import {
 } from "@shikijs/transformers";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
-import rehypeAnimate from "./plugins/animate";
 import remarkDescription from "./plugins/description";
 
 const { SITE_URL = "http://localhost:4321" } = loadEnv(
@@ -33,7 +32,6 @@ export default defineConfig({
 			themes: { light: "one-light", dark: "slack-dark" },
 		},
 		remarkPlugins: [remarkDescription],
-		rehypePlugins: [rehypeAnimate],
 	},
 	integrations: [
 		mdx(),
