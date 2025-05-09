@@ -24,7 +24,7 @@ export async function GET(context: Context) {
 	);
 
 	return rss({
-		title: HOME.TITLE,
+		title: "Syméon Smith",
 		description: HOME.DESCRIPTION,
 		site: context.site,
 		items: awaitedItems,
