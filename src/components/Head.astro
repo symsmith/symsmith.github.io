@@ -1,5 +1,4 @@
 ---
-import "../styles/global.pcss";
 import "@fontsource/inter/latin-400.css";
 import "@fontsource/inter/latin-600.css";
 import "@fontsource/lora/400.css";
@@ -93,10 +92,10 @@ const { title, description, image = "/nano.png" } = Astro.props;
 		animate();
 
 		const backToTop = document.getElementById("back-to-top");
-		backToTop?.addEventListener("click", (event) => scrollToTop(event));
+		backToTop?.addEventListener("click", scrollToTop);
 
 		const backToPrev = document.getElementById("back-to-prev");
-		backToPrev?.addEventListener("click", () => window.history.back());
+		backToPrev?.addEventListener("click", window.history.back);
 
 		const lightThemeButton = document.getElementById("light-theme-button");
 		lightThemeButton?.addEventListener("click", () => {

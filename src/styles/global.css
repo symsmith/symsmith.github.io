@@ -1,0 +1,178 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
+@source "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}";
+
+@theme {
+	--font-sans:
+		Inter, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--font-serif:
+		Lora, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+* {
+	scroll-margin-top: 70px;
+}
+
+html {
+	overflow-y: scroll;
+	color-scheme: light;
+
+	#back-to-top {
+		@apply pointer-events-none opacity-0;
+	}
+
+	&.scrolled #back-to-top {
+		@apply pointer-events-auto opacity-100;
+	}
+
+	&.dark {
+		color-scheme: dark;
+
+		.code-container {
+			.astro-code {
+				background-color: var(--shiki-dark-bg) !important;
+
+				.line,
+				span {
+					color: var(--shiki-dark) !important;
+					font-style: var(--shiki-dark-font-style) !important;
+					font-weight: var(--shiki-dark-font-weight) !important;
+					text-decoration: var(--shiki-dark-text-decoration) !important;
+				}
+			}
+
+			.copy-button {
+				background-color: var(--shiki-dark-bg);
+				color: var(--shiki-dark) !important;
+				font-style: var(--shiki-dark-font-style) !important;
+				font-weight: var(--shiki-dark-font-weight) !important;
+				text-decoration: var(--shiki-dark-text-decoration) !important;
+			}
+		}
+
+		.astro-code .line.highlighted {
+			box-shadow:
+				inset 0px 0px 0px 16px #2e2e2e,
+				calc(-1 * var(--code-padding-horizontal)) 0px 0px 0px #2e2e2e,
+				var(--code-padding-horizontal) 0px 0px 0px #2e2e2e;
+		}
+	}
+
+	&:not(.dark) .astro-code .line.highlighted {
+		box-shadow:
+			inset 0px 0px 0px 16px #efefef,
+			calc(-1 * var(--code-padding-horizontal)) 0px 0px 0px #efefef,
+			var(--code-padding-horizontal) 0px 0px 0px #efefef;
+	}
+}
+
+.code-container {
+	@apply relative;
+	--code-padding-horizontal: 12px;
+	--code-padding-vertical: 8px;
+
+	.astro-code {
+		position: relative;
+		padding-inline: var(--code-padding-horizontal);
+		padding-block: var(--code-padding-vertical);
+
+		code {
+			@apply inline-block min-w-full;
+		}
+
+		.line {
+			@apply relative block;
+
+			/* show empty lines */
+			& span:empty::after,
+			&:empty::after {
+				content: " ";
+			}
+
+			&.highlighted span {
+				background-color: transparent !important;
+			}
+		}
+	}
+
+	.copy-button {
+		@apply absolute top-0 right-0 rounded-es-md text-black/50 opacity-75 transition-all ease-in-out dark:text-white/75;
+		padding: var(--code-padding-vertical) var(--code-padding-horizontal);
+		background-color: rgb(250 250 250);
+		user-select: none;
+		font-size: 14px;
+		font-family: monospace;
+
+		&:not([disabled]):hover,
+		&[disabled] {
+			@apply text-black opacity-100 dark:text-white;
+		}
+	}
+
+	&:has(.line:first-of-type:hover) .copy-button {
+		@apply opacity-0;
+	}
+}
+
+html,
+body {
+	@apply size-full;
+}
+
+body {
+	@apply font-sans antialiased;
+	@apply flex flex-col;
+	@apply bg-stone-100 dark:bg-stone-900;
+	@apply text-black/50 dark:text-white/75;
+}
+
+header {
+	@apply fixed top-0 right-0 left-0 z-50 py-5;
+	@apply bg-stone-100/75 dark:bg-stone-900/25;
+	@apply backdrop-blur-xs;
+}
+
+main {
+	@apply flex-1 py-32;
+}
+
+footer {
+	@apply py-5 text-sm;
+}
+
+article {
+	@apply prose dark:prose-invert prose-img:mx-auto prose-img:my-auto max-w-full;
+	@apply prose-headings:font-semibold prose-p:font-serif;
+	@apply prose-headings:text-black prose-headings:dark:text-white;
+
+	a {
+		@apply text-current underline underline-offset-2;
+		@apply decoration-black/15 dark:decoration-white/30;
+		@apply transition-colors duration-300 ease-in-out;
+
+		&:hover {
+			@apply text-black dark:text-white;
+			@apply decoration-black/25 dark:decoration-white/50;
+		}
+	}
+}
+
+.animate {
+	@apply translate-y-3 opacity-0;
+	transition-property: opacity;
+	@apply duration-700 ease-out;
+
+	&.show {
+		@apply translate-y-0 opacity-100;
+	}
+}
+
+#overscroll {
+	@apply fixed z-50 flex w-full justify-center transition-all ease-linear;
+	top: 1000000000000px;
+	img {
+		@apply h-52 w-52 object-contain;
+	}
+}

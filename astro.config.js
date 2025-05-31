@@ -1,6 +1,5 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
 import { transformerColorizedBrackets } from "@shikijs/colorized-brackets";
 import {
 	transformerMetaHighlight,
@@ -10,6 +9,7 @@ import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 import rehypeCopyCode from "./plugins/copyCode";
 import remarkDescription from "./plugins/description";
+import tailwindcss from "@tailwindcss/vite";
 
 const { SITE_URL = "http://localhost:4321" } = loadEnv(
 	process.env.NODE_ENV,
@@ -42,7 +42,9 @@ export default defineConfig({
 				return !url.pathname.includes("drafts");
 			},
 		}),
-		tailwind(),
 	],
 	trailingSlash: "always",
+	vite: {
+		plugins: [tailwindcss()],
+	},
 });
