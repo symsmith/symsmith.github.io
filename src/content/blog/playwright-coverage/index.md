@@ -1,6 +1,6 @@
 ---
-title: Collecting Test Coverage from Playwright Runs
-date: 2025/05/09
+title: Collecting Test Coverage in Playwright
+date: 2025/05/31
 ---
 
 Test coverage collection is a good tool to evaluate how much of your code is being tested. It can help you identify untested parts of your codebase and improve your test suite.
