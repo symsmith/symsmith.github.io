@@ -26,7 +26,7 @@
 		"@tailwindcss/typography": "^0.5.16",
 		"@typescript-eslint/eslint-plugin": "^7.18.0",
 		"@typescript-eslint/parser": "^7.18.0",
-		"astro": "^5.8.0",
+		"astro": "^5.8.1",
 		"clsx": "^2.1.1",
 		"eslint": "^8.57.1",
 		"eslint-plugin-astro": "^0.32.0",
@@ -42,7 +42,7 @@
 		"@shikijs/transformers": "^3.4.2",
 		"prettier": "3.5.3",
 		"prettier-plugin-astro": "0.14.1",
-		"prettier-plugin-tailwindcss": "^0.6.11",
+		"prettier-plugin-tailwindcss": "^0.6.12",
 		"vite": "^6.3.5"
 	}
 }
