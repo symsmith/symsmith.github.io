@@ -13,7 +13,7 @@ const { entry, collection } = Astro.props;
 <a
 	href={`/${collection ?? entry.collection}/${entry.slug}/`}
 	class="group relative flex flex-nowrap rounded-lg border border-black/15 px-4 py-3 pr-10 transition-colors duration-300 ease-in-out hover:bg-black/5 hover:text-black dark:border-white/20 dark:hover:bg-white/5 dark:hover:text-white"
-	style={`view-transition-name: ${entry.slug}-card;`}
+	style={`view-transition-name: ${entry.slug}-article;`}
 >
 	<div class="flex flex-1 flex-col gap-2">
 		<h2
@@ -22,7 +22,7 @@ const { entry, collection } = Astro.props;
 		>
 			{entry.data.title}
 		</h2>
-		<p class="text-sm">
+		<p class="text-sm" style={`view-transition-name: ${entry.slug}-content;`}>
 			{await getDescription(entry)}
 		</p>
 	</div>
