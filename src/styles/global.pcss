@@ -6,6 +6,10 @@
 	scroll-margin-top: 70px;
 }
 
+@view-transition {
+	navigation: auto;
+}
+
 html {
 	overflow-y: scroll;
 	color-scheme: light;
@@ -141,15 +145,6 @@ article {
 		@apply text-black dark:text-white;
 		@apply decoration-black/25 dark:decoration-white/50;
 	}
-}
-
-.animate {
-	@apply translate-y-3 opacity-0;
-	@apply transition-all duration-700 ease-out;
-}
-
-.animate.show {
-	@apply translate-y-0 opacity-100;
 }
 
 html #back-to-top {

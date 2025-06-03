@@ -6,13 +6,13 @@ import RootLayout from "~/layouts/RootLayout.astro";
 
 <RootLayout title="404 error" description="Page not found">
 	<PageLayout title={`404 — ${Astro.url.pathname}`}>
-		<article class="animate">
+		<article>
 			<p>
 				Looks like you managed to find a non-existent page. It exists in a state
 				of limbo, inbetween the phases of reality itself…
 			</p>
 		</article>
-		<div class="animate">
+		<div>
 			<BackToPrev href="/">Back from whence you came</BackToPrev>
 		</div>
 	</PageLayout>
