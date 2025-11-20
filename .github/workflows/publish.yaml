@@ -36,16 +36,19 @@ jobs:
           node-version: "24"
           cache: "pnpm"
 
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
-
       - name: Configure Git to use HTTPS
         run: |
           git config --global url."https://github.com/".insteadOf git@github.com:
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Run checks
+        run: pnpm run check
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
 
       - name: Build with Astro
         run: |
