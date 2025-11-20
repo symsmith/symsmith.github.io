@@ -40,6 +40,10 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
+      - name: Configure Git to use HTTPS
+        run: |
+          git config --global url."https://github.com/".insteadOf git@github.com:
+
       - name: Install dependencies
         run: pnpm install
 
