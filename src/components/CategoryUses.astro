@@ -1,0 +1,15 @@
+---
+import type { UsesCategory } from "~/types";
+import ItemUses from "./ItemUses.astro";
+
+type Props = {
+	category: UsesCategory;
+};
+
+const { category } = Astro.props;
+---
+
+<h2>{category.title}</h2>
+<ul>
+	{category.items.map((item) => <ItemUses {item} />)}
+</ul>

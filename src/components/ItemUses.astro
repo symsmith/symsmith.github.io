@@ -1,0 +1,40 @@
+---
+import { linkRegex } from "~/lib/utils";
+import type { UsesItem } from "~/types";
+
+type Props = {
+	item: UsesItem;
+};
+
+const { item } = Astro.props;
+
+const parts = item.name ? linkRegex.exec(item.name) : null;
+---
+
+<li>
+	{item.object ? <strong>{item.object}: </strong> : ""}
+	{
+		item.link ? (
+			parts ? (
+				<Fragment
+					set:html={`${parts.groups.before}<a href="${item.link}">${parts.groups.link}</a>${parts.groups.after}`}
+				/>
+			) : (
+				<a href={item.link}>{item.name}</a>
+			)
+		) : (
+			item.name
+		)
+	}
+	{
+		item.list ? (
+			<ul>
+				{item.list.map((subItem) => (
+					<li>{subItem}</li>
+				))}
+			</ul>
+		) : (
+			""
+		)
+	}
+</li>

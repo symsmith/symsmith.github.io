@@ -1,0 +1,171 @@
+---
+import CategoryUses from "~/components/CategoryUses.astro";
+import { USES } from "~/consts";
+import PageLayout from "~/layouts/PageLayout.astro";
+import RootLayout from "~/layouts/RootLayout.astro";
+import type { UsesCategory } from "~/types";
+
+const data: UsesCategory[] = [
+	{
+		title: "Hardware",
+		items: [
+			{
+				object: "Laptop",
+				name: "MacBook Air M1, 13 inches, 8GB RAM, 512GB storage",
+			},
+			{
+				object: "Laptop (pro)",
+				name: "MacBook Pro M2, 14 inches, 16GB RAM, 512GB storage",
+			},
+			{
+				object: "Keyboard",
+				name: "<l>ZSA Voyager</l>, black with blank keycaps and brown switches",
+				link: "https://www.zsa.io/voyager",
+			},
+			{
+				object: "Phone",
+				name: "iPhone 12 mini, 64GB",
+			},
+			{
+				object: "Earbuds",
+				name: "AirPods Pro",
+			},
+			{
+				object: "Gaming PC",
+				list: [
+					"Radeon RX 7800 XT",
+					"AMD Ryzen 5 7600X",
+					"MSI B650 GAMING PLUS WIFI",
+					"32GB RAM",
+					"2TB SSD",
+				],
+			},
+			{
+				object: "E-reader",
+				name: "Old Kindle",
+			},
+		],
+	},
+	{
+		title: "Software",
+		items: [
+			{
+				object: "Keyboard layout",
+				name: "Ergo-L",
+				link: "https://ergol.org/",
+			},
+			{
+				object: "Code editor",
+				name: "VSCode",
+				link: "https://code.visualstudio.com/",
+			},
+			{
+				object: "Browser",
+				name: "Arc",
+				link: "https://arc.net/",
+			},
+			{
+				object: "Launcher",
+				name: "Raycast",
+				link: "https://www.raycast.com/",
+			},
+			{
+				object: "Terminal",
+				name: "Warp",
+				link: "https://www.warp.dev/",
+			},
+			{
+				object: "Music",
+				name: "YouTube Music",
+				link: "https://music.youtube.com/",
+			},
+			{
+				object: "Email",
+				name: "Mail (Apple)",
+			},
+			{
+				object: "VPN",
+				name: "Windscribe",
+				link: "https://windscribe.com/",
+			},
+			{
+				object: "Brightness manager",
+				name: "Lunar",
+				link: "https://lunar.fyi/",
+			},
+			{
+				object: "Window manager",
+				name: "Rectangle",
+				link: "https://rectangleapp.com/",
+			},
+		],
+	},
+	{
+		title: "VSCode extensions",
+		items: [
+			{
+				object: "Theme",
+				name: "<l>Cobalt2</l> by Wes Bos ❤️‍🔥",
+				link: "https://marketplace.visualstudio.com/items?itemName=wesbos.theme-cobalt2",
+			},
+			{
+				object: "Icon theme",
+				name: "Material Icon Theme",
+				link: "https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme",
+			},
+			{
+				name: "<l>Bundle Size</l> — display the bundle size of npm packages next to the imports",
+				link: "https://marketplace.visualstudio.com/items?itemName=ambar.bundle-size",
+			},
+			{
+				name: "<l>Color highlight</l> — highlight web colors in the code",
+				link: "https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight",
+			},
+			{
+				name: "<l>ESLint</l> — lint JS and TS code",
+				link: "https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint",
+			},
+			{
+				name: "<l>GitLens</l> — useful Git information",
+				link: "https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens",
+			},
+			{
+				name: "<l>Prettier</l> — code formatter",
+				link: "https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode",
+			},
+			{
+				name: "<l>Pretty TypeScript Errors</l> — make TypeScript errors more readable",
+				link: "https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors",
+			},
+			{
+				name: "<l>SQLite Viewer</l> — explore SQLite databases with a UI inside VSCode",
+				link: "https://marketplace.visualstudio.com/items?itemName=qwtel.sqlite-viewer",
+			},
+			{
+				name: '<l>TODO Highlight</l> — highlight "TODO:" in the editor',
+				link: "https://marketplace.visualstudio.com/items?itemName=qwtel.sqlite-viewer",
+			},
+			{
+				name: "<l>Toggle Quotes</l> — toggle JS strings between the different quote types with a shortcut",
+				link: "https://marketplace.visualstudio.com/items?itemName=BriteSnow.vscode-toggle-quotes",
+			},
+		],
+	},
+	{
+		title: "Browser extensions",
+		items: [],
+	},
+];
+---
+
+<RootLayout title={USES.TITLE} description={USES.DESCRIPTION}>
+	<PageLayout title={USES.TITLE}>
+		<article>
+			<p>
+				Here is a list of some stuff I use on a daily basis. To see more pages
+				like this, check out <a href="https://uses.tech">uses.tech</a>.
+			</p>
+			{data.map((category) => <CategoryUses {category} />)}
+		</article>
+	</PageLayout>
+</RootLayout>

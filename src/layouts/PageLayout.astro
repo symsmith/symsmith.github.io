@@ -10,7 +10,11 @@ const { title } = Astro.props;
 
 <Container>
 	<div class="space-y-10">
-		<div class="font-semibold text-black dark:text-white">{title}</div>
+		<div class="prose dark:prose-invert">
+			<h1>
+				{title}
+			</h1>
+		</div>
 		<slot />
 	</div>
 </Container>

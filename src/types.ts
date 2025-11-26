@@ -12,3 +12,15 @@ export type Socials = {
 	NAME: string;
 	HREF: string;
 }[];
+
+export type UsesItem = {
+	object?: string;
+	name?: string;
+	link?: string;
+	list?: string[];
+};
+
+export type UsesCategory = {
+	title: string;
+	items: UsesItem[];
+};

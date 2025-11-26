@@ -17,6 +17,11 @@ export const BLOG: Metadata = {
 		"Short articles about web development topics that I come across in my daily work",
 };
 
+export const USES: Metadata = {
+	TITLE: "/uses",
+	DESCRIPTION: "Some stuff I use in my daily life",
+};
+
 export const SOCIALS: Socials = [
 	{
 		NAME: "github",

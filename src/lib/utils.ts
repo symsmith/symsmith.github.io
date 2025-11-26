@@ -1,3 +1,4 @@
+import { regex } from "arkregex";
 import { render, type CollectionEntry } from "astro:content";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -44,3 +45,5 @@ export async function getDescription(post: CollectionEntry<"blog">) {
 	const { remarkPluginFrontmatter } = await render(post);
 	return (remarkPluginFrontmatter.description as string) || "";
 }
+
+export const linkRegex = regex("(?<before>.*)<l>(?<link>.*)</l>(?<after>.*)");
